@@ -1,5 +1,5 @@
 name: CI/CD Payment App # Flutter for Android
-# Test build apk v1.1
+# Test build apk v1.2 with tag
 on:
   push:
     branches: [master]
@@ -35,3 +35,9 @@ jobs:
 
       - name:
         run: flutter build apk
+
+      - name: Create a Release APK
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/debug/*.apk"
+          token: ${{ secrets.PaymentAppToken }}
