@@ -1,5 +1,5 @@
 name: CI/CD Payment App # Flutter for Android
-# Test build apk v1.2
+# Test build apk v1.4
 on:
   push:
     tags:
@@ -42,4 +42,4 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/debug/*.apk"
-          token: ${{ secrets.PaymentAppToken }}
+          token: ${{ secrets.PAYMENTAPPTOKEN }}
