@@ -38,9 +38,26 @@ jobs:
       - name:
         run: flutter build apk
 
-      - name: Create a Release APK
-        uses: ncipollo/release-action@v1
+      # - name: Create a Release APK
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     artifacts: "build/app/outputs/apk/debug/*.apk"
+      #     token: ${{ secrets.PAYMENTAPPTOKEN }}
+
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     # artifacts: "build/app/outputs/apk/debug/*.apk"
+      #     artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+      #     token: ${{ secrets.PAYMENTAPPTOKEN }}
+      #     name: app-release
+      #     path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Deploy to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          # artifacts: "build/app/outputs/apk/debug/*.apk"
-          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-          token: ${{ secrets.PAYMENTAPPTOKEN }}
+          appId: paymentapp-f3bfc # YOUR_FIREBASE_APP_ID
+          token: ${{ secrets.PAYMENTAPPFIREBASETOKEN }}
+          releaseNotes: "Release notes for this version"
+          groups: "internal-testers" # You can change the target group if needed
+
