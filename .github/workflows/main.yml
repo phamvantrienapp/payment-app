@@ -1,5 +1,5 @@
 name: CI/CD Payment App # Flutter for Android
-# Test build apk v2.1
+# Test build apk v2.2
 on:
   push:
     tags:
@@ -62,7 +62,7 @@ jobs:
       - name: Deploy to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: paymentapp-f3bfc # YOUR_FIREBASE_APP_ID
+          appId: 1:868117740618:android:ccb924e096fdce1fbfbab3 # YOUR_FIREBASE_APP_ID
           token: ${{ secrets.PAYMENTAPPFIREBASETOKEN }}
           releaseNotes: "Release notes for this version"
           # groups: "internal-testers" # You can change the target group if needed
