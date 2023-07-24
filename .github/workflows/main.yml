@@ -1,5 +1,5 @@
 name: CI/CD Payment App # Flutter for Android
-# Test build apk v2.0
+# Test build apk v2.1
 on:
   push:
     tags:
@@ -65,5 +65,5 @@ jobs:
           appId: paymentapp-f3bfc # YOUR_FIREBASE_APP_ID
           token: ${{ secrets.PAYMENTAPPFIREBASETOKEN }}
           releaseNotes: "Release notes for this version"
-          groups: "internal-testers" # You can change the target group if needed
+          # groups: "internal-testers" # You can change the target group if needed
           file: "build/app/outputs/flutter-apk/app-release.apk"
