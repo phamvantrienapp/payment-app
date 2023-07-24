@@ -1,5 +1,5 @@
 name: CI/CD Payment App # Flutter for Android
-# Test build apk v1.5
+# Test build apk v1.7
 on:
   push:
     tags:
@@ -52,6 +52,12 @@ jobs:
       #     token: ${{ secrets.PAYMENTAPPTOKEN }}
       #     name: app-release
       #     path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Deploy to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
