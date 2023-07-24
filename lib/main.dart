@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:paymetns_app/features/splash/splash.dart';
 import 'package:paymetns_app/modules/dependency_injection/di.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   configureDependencies();
   runApp(const MyApp());
 }
