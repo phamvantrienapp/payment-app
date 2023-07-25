@@ -1,12 +1,8 @@
-name: CI/CD Payment App # Flutter for Android
-# Test build apk v1.4
+name: CI/CD Payment App
 on:
   push:
-    tags:
-      - "*"
-    branches: [master]
+    branches: [build-appp]
   pull_request:
-    branches: [master]
 
 jobs:
   build:
@@ -35,29 +31,20 @@ jobs:
       # - name: Run tests
       #   run: flutter test
 
-      - name:
+      - name: Build APK
         run: flutter build apk
 
-      # - name: Create a Release APK
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: "build/app/outputs/apk/debug/*.apk"
-      #     token: ${{ secrets.PAYMENTAPPTOKEN }}
-
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     # artifacts: "build/app/outputs/apk/debug/*.apk"
-      #     artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-      #     token: ${{ secrets.PAYMENTAPPTOKEN }}
-      #     name: app-release
-      #     path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ secrets.APP_NAME }}
+          path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Deploy to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: paymentapp-f3bfc # YOUR_FIREBASE_APP_ID
-          token: ${{ secrets.PAYMENTAPPFIREBASETOKEN }}
-          releaseNotes: "Release notes for this version"
-          groups: "internal-testers" # You can change the target group if needed
-
+          appId: ${{ secrets.APPID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: "internal-testers"
+          releaseNotes: "Test Build Version 2.5"
+          file: "build/app/outputs/flutter-apk/app-release.apk"
