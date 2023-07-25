@@ -4,6 +4,8 @@ on:
     branches:
       - test
   pull_request:
+    branches:
+      - test
 
 # Declare default permissions as read only.
 permissions: read-all
