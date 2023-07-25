@@ -3,6 +3,7 @@ on:
   push:
     branches: [build-appp]
   pull_request:
+    branches: [build-appp]
 
 jobs:
   build:

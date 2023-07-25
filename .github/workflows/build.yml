@@ -3,6 +3,7 @@ on:
   push:
     branches: [build-app]
   pull_request:
+    branches: [build-app]
 
 # Declare default permissions as read only.
 permissions: read-all
