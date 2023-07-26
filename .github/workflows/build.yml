@@ -1,4 +1,4 @@
-name: Builds V2.5
+name: Builds V2.6
 on:
   push:
     tags:
@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         target:
-          ["apk --debug", "ios --no-codesign"]
+          ["apk", "ios"]
           # ["apk --debug", "appbundle --debug", "ios --no-codesign", macos, web]
     steps:
       - name: Set up JDK 11
