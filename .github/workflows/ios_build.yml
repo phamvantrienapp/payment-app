@@ -1,4 +1,4 @@
-name: IOS Builds V3.2
+name: IOS Builds V3.3
 on:
   push:
     tags:
@@ -52,5 +52,5 @@ jobs:
           appId: ${{ secrets.IOS_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build version 3.2"
+          releaseNotes: "Test build version 3.3"
           file: "build/ios/iphoneos/Runner.app"
