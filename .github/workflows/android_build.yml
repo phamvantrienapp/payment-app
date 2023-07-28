@@ -1,4 +1,4 @@
-name: Android Builds V3.3
+name: Android Builds V3.4
 on:
   push:
     tags:
@@ -58,7 +58,7 @@ jobs:
           appId: ${{ secrets.ANDROID_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build version 3.3"
+          releaseNotes: "Test build version 3.4"
           file: "build/app/outputs/flutter-apk/app-release.apk"
 # jobs:
 #   build:

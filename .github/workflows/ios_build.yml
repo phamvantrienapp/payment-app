@@ -1,4 +1,4 @@
-name: IOS Builds V3.3
+name: IOS Builds V3.4
 on:
   push:
     tags:
@@ -17,10 +17,10 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Setup Flutter SDK
-        uses: flutter-actions/setup-flutter@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          version: 3.10.1
+          flutter-version: "3.10.1"
 
       - name: Install dependencies
         run: flutter pub get
@@ -52,5 +52,5 @@ jobs:
           appId: ${{ secrets.IOS_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build version 3.3"
+          releaseNotes: "Test build version 3.4"
           file: "build/ios/iphoneos/Runner.app"
