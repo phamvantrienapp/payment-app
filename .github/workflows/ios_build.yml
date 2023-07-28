@@ -1,0 +1,45 @@
+name: Builds V2.9
+on:
+  push:
+    tags:
+      - "*"
+  #   branches: [build-app]
+  # pull_request:
+  #   branches: [build-app]
+
+# Declare default permissions as read only.
+permissions: read-all
+# IOS
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.10.1"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS app
+        run: flutter build ios --release --no-codesign
+
+      - name: Archive IOS artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ secrets.APP_NAME }}
+          path: build/ios/iphoneos/
+
+      - name: Deploy IOS to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.IOS_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: "internal-testers"
+          releaseNotes: "Test Build Version 2.9"
+          file: "build/ios/iphoneos/Runner.app"

@@ -29,15 +29,6 @@ jobs:
       - name: Build APK app
         run: flutter build apk
 
-      - name: Build iOS app
-        run: flutter build ios --release --no-codesign
-
-      - name: Archive IOS artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ secrets.APP_NAME }}
-          path: build/ios/iphoneos/
-
       - name: Archive Android artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -52,15 +43,6 @@ jobs:
           groups: "internal-testers"
           releaseNotes: "Test Build Version 2.9"
           file: "build/app/outputs/flutter-apk/app-release.apk"
-
-      - name: Deploy IOS to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.IOS_APP_ID }}
-          token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: "internal-testers"
-          releaseNotes: "Test Build Version 2.9"
-          file: "build/ios/iphoneos/Runner.app"
 # jobs:
 #   build:
 #     name: Build ${{ matrix.target }}
