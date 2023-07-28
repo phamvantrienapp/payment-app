@@ -40,6 +40,12 @@ jobs:
           name: ${{ secrets.APP_NAME }}
           path: build/ios/iphoneos/
 
+      # - name: Fastlane Setup
+      #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
+
+      # - name: Update App Version
+      #   run: bundle exec fastlane update_version version_number:"1.0.1"
+
       - name: Deploy ios to firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:

@@ -46,6 +46,12 @@ jobs:
           name: ${{ secrets.APP_NAME }}
           path: build/app/outputs/flutter-apk/app-release.apk
 
+      # - name: Fastlane Setup
+      #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
+
+      # - name: Update App Version
+      #   run: bundle exec fastlane update_version version_number:"1.0.1"
+
       - name: Deploy android to firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
