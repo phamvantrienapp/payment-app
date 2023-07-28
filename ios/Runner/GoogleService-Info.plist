@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>868117740618-ar6r9di573cio25f0u6t3jo30v547sp1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.868117740618-ar6r9di573cio25f0u6t3jo30v547sp1</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>868117740618-2m4hlggecn2ov43tp34809sq9k3if7lr.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDcByOXLdqGTOthSg7bWCsm9gYHHkYddpc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>868117740618</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.paymetnsApp</string>
+	<key>PROJECT_ID</key>
+	<string>paymentapp-f3bfc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>paymentapp-f3bfc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:868117740618:ios:b0ec332e08ad8937bfbab3</string>
+</dict>
+</plist>
