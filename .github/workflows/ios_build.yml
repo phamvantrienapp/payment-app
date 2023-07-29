@@ -1,5 +1,5 @@
-variables:
-  version: 3.5
+defaults:
+  version: 3.6
   flutterVersion: 3.10.1
 
 name: IOS build version $(version)
