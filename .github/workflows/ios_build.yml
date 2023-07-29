@@ -1,8 +1,8 @@
 env:
-  build_version: "5.3"
+  build_version: "5.4"
   flutter_version: "3.10.1"
 
-name: IOS build version 5.3
+name: IOS build version 5.4
 
 on:
   push:
@@ -56,7 +56,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: payment-app.ipa
-          path: build/ios/iphoneos/payment-app.ipa
+          path: downloaded_artifact
+
+      - name: List Files
+        run: ls downloaded_artifact
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
