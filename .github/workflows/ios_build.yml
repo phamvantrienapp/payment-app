@@ -1,8 +1,9 @@
 env:
-  build_version: 4.8
+  build_version: "4.9"
   flutter_version: "3.10.1"
 
-name: IOS build version 4.8
+name: IOS build version ${{ env.build_version }}
+
 on:
   push:
     tags:
@@ -14,7 +15,7 @@ on:
 permissions: read-all
 
 jobs:
-  build:
+  build-ios:
     runs-on: macos-latest
 
     steps:
@@ -29,8 +30,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # - name: Analyze project source
-      #   run: dart analyze
+      - name: Analyze project source
+        run: dart analyze
 
       # - name: Run tests
       #   run: flutter test
@@ -41,8 +42,20 @@ jobs:
       - name: Archive ios artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ secrets.APP_NAME }}
+          name: payment-app.ipa
           path: build/ios/iphoneos/
+
+  distribute-ios:
+    needs: build-ios # This is important
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download ios artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: payment-app.ipa
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
@@ -57,4 +70,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
           releaseNotes: "Test build version ${{ env.build_version }}"
-          file: "build/ios/iphoneos/Runner.app"
+          file: payment-app.ipa
