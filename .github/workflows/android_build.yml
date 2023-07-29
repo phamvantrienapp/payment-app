@@ -1,8 +1,8 @@
 env:
-  build_version: 4.4
+  build_version: 4.5
   flutter_version: 3.10.1
 
-name: Android build version 4.4
+name: Android build version 4.5
 on:
   push:
     tags:
@@ -30,7 +30,7 @@ jobs:
       - name: Setup Flutter SDK
         uses: flutter-actions/setup-flutter@v2
         with:
-          version: $flutter_version
+          version: $(flutter_version)
 
       - name: Install dependencies
         run: flutter pub get
@@ -62,7 +62,7 @@ jobs:
           appId: ${{ secrets.ANDROID_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build $build_version"
+          releaseNotes: "Test build $(build_version)"
           file: "build/app/outputs/flutter-apk/app-release.apk"
 # jobs:
 #   build:
