@@ -1,8 +1,8 @@
 defaults:
-  version: 3.6
-  flutterVersion: 3.10.1
+  key1: 3.7
+  key2: 3.10.1
 
-name: Android build version $(version)
+name: Android build version $(key1)
 on:
   push:
     tags:
@@ -30,7 +30,7 @@ jobs:
       - name: Setup Flutter SDK
         uses: flutter-actions/setup-flutter@v2
         with:
-          version: $(flutterVersion)
+          version: $(key2)
 
       - name: Install dependencies
         run: flutter pub get
@@ -62,7 +62,7 @@ jobs:
           appId: ${{ secrets.ANDROID_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build $(version)"
+          releaseNotes: "Test build $(key1)"
           file: "build/app/outputs/flutter-apk/app-release.apk"
 # jobs:
 #   build:

@@ -1,8 +1,8 @@
 defaults:
-  version: 3.6
-  flutterVersion: 3.10.1
+  key1: 3.7
+  key2: 3.10.1
 
-name: IOS build version $(version)
+name: IOS build version $(key1)
 on:
   push:
     tags:
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "$(flutterVersion)"
+          flutter-version: "$(key2)"
 
       - name: Install dependencies
         run: flutter pub get
@@ -56,5 +56,5 @@ jobs:
           appId: ${{ secrets.IOS_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build version $(version)"
+          releaseNotes: "Test build version $(key1)"
           file: "build/ios/iphoneos/Runner.app"
