@@ -1,8 +1,8 @@
 env:
-  build_version: "4.9"
+  build_version: "5.0"
   flutter_version: "3.10.1"
 
-name: Android build version ${{ env.build_version }}
+name: Android build version 5.0
 on:
   push:
     tags:
