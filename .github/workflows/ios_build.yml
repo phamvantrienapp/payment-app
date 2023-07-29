@@ -1,5 +1,5 @@
-defaults:
-  key1: 3.7
+defaults: &defaults
+  key1: 3.8
   key2: 3.10.1
 
 name: IOS build version $(key1)
