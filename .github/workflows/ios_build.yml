@@ -1,8 +1,8 @@
 env:
-  build_version: "5.9"
+  build_version: "6.0"
   flutter_version: "3.10.1"
 
-name: IOS build version 5.9
+name: IOS build version 6.0
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
       - name: Archive ios artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ios-ipa
+          name: payment-app.ipa
           path: build/ios/payment-app.ipa
 
   distribute-ios:
@@ -55,7 +55,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: ios-ipa
+          name: payment-app.ipa
           path: build/ios/payment-app.ipa
 
       - name: List Files
