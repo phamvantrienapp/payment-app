@@ -1,8 +1,8 @@
 env:
-  build_version: "7.2"
+  build_version: "7.3"
   flutter_version: "3.10.1"
 
-name: Android build version 7.2
+name: Android build version 7.3
 on:
   push:
     tags:
