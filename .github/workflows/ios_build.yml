@@ -1,8 +1,8 @@
 env:
-  build_version: "6.3"
+  build_version: "6.4"
   flutter_version: "3.10.1"
 
-name: IOS build version 6.3
+name: IOS build version 6.4
 
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
           path: build/
 
       - name: List Files
-        run: ls ios-artifact
+        run: ls build
 
   distribute-ios:
     needs: build-ios # This is important
