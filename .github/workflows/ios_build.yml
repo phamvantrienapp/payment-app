@@ -1,4 +1,9 @@
-name: IOS Builds V3.2
+env:
+  build_version: "5.8"
+  flutter_version: "3.10.1"
+
+name: IOS build version 5.8
+
 on:
   push:
     tags:
@@ -10,17 +15,17 @@ on:
 permissions: read-all
 
 jobs:
-  build:
+  build-ios:
     runs-on: macos-latest
 
     steps:
       - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Setup Flutter SDK
-        uses: flutter-actions/setup-flutter@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          version: 3.10.1
+          flutter-version: ${{ env.flutter_version }}
 
       - name: Install dependencies
         run: flutter pub get
@@ -37,8 +42,30 @@ jobs:
       - name: Archive ios artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ secrets.APP_NAME }}
-          path: build/ios/iphoneos/
+          name: ios-ipa
+          path: build/ios/payment-app.ipa
+
+  distribute-ios:
+    needs: build-ios # This is important
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ios-ipa
+          path: build/ios/payment-app.ipa
+
+      - name: List Files
+        run: ls payment-app.ipa
+
+      # - name: Fastlane Setup
+      #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
+
+      # - name: Update App Version
+      #   run: bundle exec fastlane update_version version_number:"1.0.1"
 
       - name: Deploy ios to firebase app distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -46,5 +73,5 @@ jobs:
           appId: ${{ secrets.IOS_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
-          releaseNotes: "Test build version 3.2"
-          file: "build/ios/iphoneos/Runner.app"
+          releaseNotes: "Test build version ${{ env.build_version }}"
+          file: build/ios/payment-app.ipa
