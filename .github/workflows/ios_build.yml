@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ios-ipa
-          path: build/ios/iphoneos/payment-app.ipa
+          path: build/ios/payment-app.ipa
 
   distribute-ios:
     needs: build-ios # This is important
@@ -56,10 +56,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ios-ipa
-          path: downloaded_artifact
+          path: build/ios/payment-app.ipa
 
       - name: List Files
-        run: ls downloaded_artifact
+        run: ls payment-app.ipa
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
@@ -74,4 +74,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
           releaseNotes: "Test build version ${{ env.build_version }}"
-          file: build/ios/iphoneos/payment-app.ipa
+          file: build/ios/payment-app.ipa
