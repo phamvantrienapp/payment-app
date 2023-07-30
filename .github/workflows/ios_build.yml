@@ -1,8 +1,8 @@
 env:
-  build_version: "6.9"
+  build_version: "7.0"
   flutter_version: "3.10.1"
 
-name: IOS build version 6.9
+name: IOS build version 7.0
 
 on:
   push:
@@ -67,6 +67,7 @@ jobs:
 
       - name: List Files
         run: ls build/ios
+      - name: List Files
         run: find Release-iphoneos
 
       # - name: Fastlane Setup
