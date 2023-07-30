@@ -1,8 +1,8 @@
 env:
-  build_version: "7.0"
+  build_version: "7.1"
   flutter_version: "3.10.1"
 
-name: IOS build version 7.0
+name: IOS build version 7.1
 
 on:
   push:
@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ios-artifact
-          path: build
+          path: build/ios/ios-artifact.ipa
 
       - name: List Files
         run: ls build/ios
@@ -63,12 +63,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ios-artifact
-          path: build/ios/Release-iphoneos
+          path: build/ios
 
       - name: List Files
         run: ls build/ios
-      - name: List Files
-        run: find Release-iphoneos
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
@@ -83,4 +81,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
           releaseNotes: "Test build version ${{ env.build_version }}"
-          file: build/ios/Release-iphoneos.ipa
+          file: ios-artifact.ipa
