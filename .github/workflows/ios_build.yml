@@ -1,8 +1,8 @@
 env:
-  build_version: "5.7"
+  build_version: "5.8"
   flutter_version: "3.10.1"
 
-name: IOS build version 5.7
+name: IOS build version 5.8
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
       - name: Archive ios artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: payment-app.ipa
+          name: ios-ipa
           path: build/ios/iphoneos/payment-app.ipa
 
   distribute-ios:
@@ -52,17 +52,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: List Files
-        run: find payment-app.ipa
-
-      - name: List Files payment-app.ipa
-        run: ls payment-app.ipa
-
-      - name: Download ios artifacts
+      - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: payment-app.ipa
-          path: build/ios/iphoneos/
+          name: ios-ipa
+          path: downloaded_artifact
+
+      - name: List Files
+        run: ls downloaded_artifact
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
