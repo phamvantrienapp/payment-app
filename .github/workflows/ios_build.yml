@@ -1,8 +1,8 @@
 env:
-  build_version: "6.2"
+  build_version: "6.3"
   flutter_version: "3.10.1"
 
-name: IOS build version 6.2
+name: IOS build version 6.3
 
 on:
   push:
@@ -45,6 +45,9 @@ jobs:
           name: ios-artifact
           path: build/
 
+      - name: List Files
+        run: ls ios-artifact
+
   distribute-ios:
     needs: build-ios # This is important
     runs-on: ubuntu-latest
@@ -57,6 +60,9 @@ jobs:
         with:
           name: ios-artifact
           path: build/
+
+      - name: List Files
+        run: ls ios-artifact
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
@@ -71,4 +77,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
           releaseNotes: "Test build version ${{ env.build_version }}"
-          file: build/YourApp.ipa
+          file: ios-artifact
