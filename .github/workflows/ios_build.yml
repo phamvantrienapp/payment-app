@@ -1,8 +1,8 @@
 env:
-  build_version: "8.0"
+  build_version: "8.1"
   flutter_version: "3.10.1"
 
-name: IOS build version 8.0
+name: IOS build version 8.1
 
 on:
   push:
@@ -59,10 +59,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ios-build
-          # path: build/ios/payment-app.ipa
+          path: build/ios/iphoneos/
 
-      # - name: List Files
-      #   run: ls build/ios/iphoneos
+      - name: List Files
+        run: ls build/ios/iphoneos
 
       # - name: Fastlane Setup
       #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
