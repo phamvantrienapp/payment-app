@@ -1,8 +1,8 @@
 env:
-  build_version: "8.4"
+  build_version: "8.5"
   flutter_version: "3.10.1"
 
-name: IOS build version 8.4
+name: IOS build version 8.5
 
 on:
   push:
@@ -39,22 +39,10 @@ jobs:
       - name: Build ios app
         run: flutter build ios --release --no-codesign
 
-      - name: List Files 1
-        run: ls build
-
-      - name: List Files 2
-        run: ls build/ios
-
-      - name: List Files 3
-        run: ls build/ios/iphoneos
-
-      - name: List Files 4
-        run: ls build/ios/Release-iphoneos
-
       - name: Archive ios artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: app.ipa
+          name: ios-build
           path: build/ios/iphoneos
 
       - name: List Files 5
@@ -70,14 +58,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: app.ipa
-          path: build/ios/iphoneos
-
-      - name: List Files
-        run: ls build/ios/iphoneos
-
-      # - name: Fastlane Setup
-      #   run: gem install bundler && bundle install --gemfile=fastlane/Gemfile
+          name: ios-build
 
       # - name: Update App Version
       #   run: bundle exec fastlane update_version version_number:"1.0.1"
@@ -89,4 +70,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
           releaseNotes: "Test build version ${{ env.build_version }}"
-          file: build/ios/iphoneos/app.ipa
+          file: Runner.ipa
