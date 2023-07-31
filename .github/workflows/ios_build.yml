@@ -1,8 +1,8 @@
 env:
-  build_version: "8.6"
+  build_version: "8.7"
   flutter_version: "3.10.1"
 
-name: IOS build version 8.6
+name: IOS build version 8.7
 
 on:
   push:
@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ios-build
-          path: build/ios/iphoneos/app.ipa
+          path: build/ios/iphoneos
 
       # - name: List Files 5
       #   run: ls build/ios/iphoneos
@@ -71,4 +71,4 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: "internal-testers"
           releaseNotes: "Test build version ${{ env.build_version }}"
-          file: build/ios/iphoneos/app.ipa
+          file: app.ipa
